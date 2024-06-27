@@ -33,3 +33,20 @@ export const getStory = async (storyId: number) => {
     console.error(err);
   }
 };
+
+export const getComment = async (commentId: number) => {
+  try {
+    const story = await fetch(
+      `https://hacker-news.firebaseio.com/v0/item/${commentId}.json?print=pretty`
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      return response.json() as Promise<StoriesData>;
+    });
+    return story;
+  } catch (err) {
+    console.error(err);
+  }
+};

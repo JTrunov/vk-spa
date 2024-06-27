@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getStory } from "../../services/api";
 import { StoriesData } from "../../types/types";
+import Comments from "../Comments/Comments";
 
 const StoryExtended = () => {
   const { id } = useParams();
@@ -16,8 +17,9 @@ const StoryExtended = () => {
   }, [id]);
   return (
     <div>
+      <Link to="/">Home</Link>
       <h1>{storyInfo?.title}</h1>
-      <p>{storyInfo?.text}</p>
+      <Comments comments={storyInfo?.kids} />
     </div>
   );
 };
